@@ -1,0 +1,97 @@
+#CONFIG {AUTO TAB} {5000}
+#CONFIG {BUFFER SIZE} {10000}
+#CONFIG {CHARSET} {UTF-8}
+#CONFIG {COLOR MODE} {TRUE}
+#CONFIG {COLOR PATCH} {OFF}
+#CONFIG {COMMAND COLOR} {\e[0;37m}
+#CONFIG {COMMAND ECHO} {ON}
+#CONFIG {CONNECT RETRY} {0.0}
+#CONFIG {HISTORY SIZE} {1000}
+#CONFIG {LOG MODE} {RAW}
+#CONFIG {MOUSE} {OFF}
+#CONFIG {PACKET PATCH} {AUTO OFF}
+#CONFIG {RANDOM SEED} {2642034883}
+#CONFIG {REPEAT CHAR} {!}
+#CONFIG {REPEAT ENTER} {ON}
+#CONFIG {SCREEN READER} {OFF}
+#CONFIG {SCROLL LOCK} {ON}
+#CONFIG {SPEEDWALK} {OFF}
+#CONFIG {TAB WIDTH} {8}
+#CONFIG {TELNET} {ON}
+#CONFIG {TINTIN CHAR} {#}
+#CONFIG {VERBATIM} {OFF}
+#CONFIG {VERBATIM CHAR} {\}
+#CONFIG {VERBOSE} {OFF}
+#CONFIG {WORDWRAP} {ON}
+
+#PATHDIR {d} {u} {32}
+#PATHDIR {e} {w} {2}
+#PATHDIR {n} {s} {1}
+#PATHDIR {ne} {sw} {3}
+#PATHDIR {nw} {se} {9}
+#PATHDIR {s} {n} {4}
+#PATHDIR {se} {nw} {6}
+#PATHDIR {sw} {ne} {12}
+#PATHDIR {u} {d} {16}
+#PATHDIR {w} {e} {8}
+
+#session rod mud.rod.org 3000
+#split
+
+#ticker {tic} {save} {300}
+
+#action {The frost cloak covering you melts away.} {cast frost cloak me}
+#action {Your Water Shield Spell Expires!} {cast water shield me}
+#action {You feel your resistance to %1 leave you.} {cast resist %1 me}
+#action {The ice armour surrounding you melts away.} {cast ice armour me}
+
+
+
+
+#alias ef {effects}
+#alias re {reply %0}
+#alias orgin {n;n;n;move curtain;u;u;u;n;ne;nw;enter statue;in;in;s}
+#alias {buff} NOW TRIGGERS {get 7 str potions from bp;#7 drink str potion;get 7 int potions from bp;#7 drink int potion}
+#alias {def} {
+		cast ice armour %1;
+		#delay {3} {cast frost cloak %1};
+		#delay {6} {cast water shield %1};
+		#delay {9} {cast resist magic %1};
+		#delay {12} {cast resist cold %1};
+	    }
+
+#alias ac {cast ice armour me}
+#alias ac2 {cast frost cloak me}
+#alias shi {cast water shield me}
+#alias rm {cast resist magic me}
+#alias rc {cast resist cold me}
+
+
+#highlight {Barbizon} {bold yellow}
+#highlight {Archmagus of Aqua Planum} {bold cyan}
+#highlight {Teken'duis} {bold ebony}
+#highlight {Yurtrus} {green}
+#highlight {Claddath} {bold ebony}
+#highlight {Mahar} {green}
+
+
+
+#action {^Hp: {\d+}\({\d+}\)} {
+	\#echo yeh %1 %2;
+	}
+	              #MACRO {*} {out}
+#MACRO {/} {in}
+#MACRO {\eOl} {down}
+#MACRO {\eOm} {up}
+#MACRO {\eOq} {sw}
+#MACRO {\eOr} {s}
+#MACRO {\eOs} {se}
+#MACRO {\eOt} {w}
+#MACRO {\eOu} {look}
+#MACRO {\eOv} {e}
+#MACRO {\eOw} {nw}
+#MACRO {\eOx} {n}
+#MACRO {\eOy} {ne}
+
+
+		      
