@@ -66,21 +66,22 @@
 #alias rm {cast resist magic me}
 #alias rc {cast resist cold me}
 
+#HIGHLIGHT {Archmagus of Aqua Planum} {bold cyan}
+#HIGHLIGHT {Barbizon} {bold yellow}
+#HIGHLIGHT {Claddath} {bold black}
+#HIGHLIGHT {Elspeth} {red}
+#HIGHLIGHT {Faer'Maethor} {red}
+#HIGHLIGHT {Mahar} {green}
+#HIGHLIGHT {Serrllach} {red}
+#HIGHLIGHT {Teken'duis} {bold black}
+#HIGHLIGHT {Yurtrus} {green}
+#HIGHLIGHT {Scryers} {bold yellow}
+#HIGHLIGHT {Engineers} {bold yellow}
+#HIGHLIGHT {%* {is|are} here.} {red}
 
-#highlight {Barbizon} {bold yellow}
-#highlight {Archmagus of Aqua Planum} {bold cyan}
-#highlight {Teken'duis} {bold ebony}
-#highlight {Yurtrus} {green}
-#highlight {Claddath} {bold ebony}
-#highlight {Mahar} {green}
 
 
-
-#action {^Hp: {\d+}\({\d+}\)} {
-	\#echo yeh %1 %2;
-	}
-	              #MACRO {*} {out}
-#MACRO {/} {in}
+#action {^Hp: {\d+}\({\d+}\)} {#echo yeh %1 %2}
 #MACRO {\eOl} {down}
 #MACRO {\eOm} {up}
 #MACRO {\eOq} {sw}
