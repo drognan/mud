@@ -1,6 +1,6 @@
 #CONFIG {AUTO TAB} {5000}
 #CONFIG {BUFFER SIZE} {10000}
-#CONFIG {CHARSET} {UTF-8}
+#CONFIG {CHARSET} {ASCII}
 #CONFIG {COLOR MODE} {TRUE}
 #CONFIG {COLOR PATCH} {OFF}
 #CONFIG {COMMAND COLOR} {\e[0;37m}
@@ -22,7 +22,7 @@
 #CONFIG {VERBATIM} {OFF}
 #CONFIG {VERBATIM CHAR} {\}
 #CONFIG {VERBOSE} {OFF}
-#CONFIG {WORDWRAP} {ON}
+#CONFIG {WORDWRAP} {OFF}
 
 #PATHDIR {d} {u} {32}
 #PATHDIR {e} {w} {2}
@@ -36,7 +36,7 @@
 #PATHDIR {w} {e} {8}
 
 #session rod mud.rod.org 3000
-#split
+#split 10 1 0 -200 1
 
 #ticker {tic} {save} {300}
 
@@ -95,4 +95,41 @@
 #MACRO {\eOy} {ne}
 
 
-		      
+#VARIABLE {window}
+{
+     {1} {}
+     {2} {}
+     {3} {}
+     {4} {}
+     {5} {}
+     {6} {}
+     {7} {}
+     {8} {}
+     {9} {}
+     {10} {}
+}
+
+#ACTION {~%1 tells you%*: "%2}
+{
+     showtowin %1 tells you: "%2
+}
+
+#ACTION {~%1 says%*: "%2}
+{
+     showtowin %1 says: "%2
+}
+
+#ALIAS {showtowin}
+{
+     #list window del 1;
+     #list window ins -1 {%0};
+     #draw green rounded box 1 1 10 201 $window[-10..-1]
+}
+
+#ALIAS {test}
+{
+     #showme <138>Bubba tells you: "hello";
+     #showme <158>Pamela says: "bye";
+     #showme <168>Bobbo tells you in elvish: "bli bla blo"
+}		      
+
