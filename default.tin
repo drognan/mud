@@ -1,13 +1,13 @@
 #CONFIG {AUTO TAB} {5000}
 #CONFIG {BUFFER SIZE} {10000}
-#CONFIG {CHARSET} {ASCII}
+#CONFIG {CHARSET} {ISO1TOUTF8}
 #CONFIG {COLOR MODE} {TRUE}
 #CONFIG {COLOR PATCH} {OFF}
 #CONFIG {COMMAND COLOR} {\e[0;37m}
 #CONFIG {COMMAND ECHO} {ON}
 #CONFIG {CONNECT RETRY} {0.0}
 #CONFIG {HISTORY SIZE} {1000}
-#CONFIG {LOG MODE} {RAW}
+#CONFIG {LOG MODE} {HTML}
 #CONFIG {MOUSE} {OFF}
 #CONFIG {PACKET PATCH} {AUTO OFF}
 #CONFIG {RANDOM SEED} {2642034883}
@@ -59,6 +59,7 @@
 		#delay {9} {cast resist magic %1};
 		#delay {12} {cast resist cold %1};
 	    }
+#action {^%* says loudly%*, "defs %1"} {def %1}
 
 #alias ac {cast ice armour me}
 #alias ac2 {cast frost cloak me}
@@ -66,14 +67,14 @@
 #alias rm {cast resist magic me}
 #alias rc {cast resist cold me}
 
-#HIGHLIGHT {Archmagus of Aqua Planum} {bold cyan}
+#HIGHLIGHT {Archmagus of Aqua Planum} {<aee>}
 #HIGHLIGHT {Barbizon} {bold yellow}
-#HIGHLIGHT {Claddath} {bold black}
+#HIGHLIGHT {Claddath} {<ccc>}
 #HIGHLIGHT {Elspeth} {red}
 #HIGHLIGHT {Faer'Maethor} {red}
 #HIGHLIGHT {Mahar} {green}
 #HIGHLIGHT {Serrllach} {red}
-#HIGHLIGHT {Teken'duis} {bold black}
+#HIGHLIGHT {Teken'duis} {<ccc>}
 #HIGHLIGHT {Yurtrus} {green}
 #HIGHLIGHT {Scryers} {bold yellow}
 #HIGHLIGHT {Engineers} {bold yellow}
@@ -109,12 +110,12 @@
      {10} {}
 }
 
-#ACTION {~%1 tells you%*: "%2}
+#ACTION {~%1 tells you%*, "%2}
 {
      showtowin %1 tells you: "%2
 }
 
-#ACTION {~%1 says%*: "%2}
+#ACTION {~%1 says%*, "%2}
 {
      showtowin %1 says: "%2
 }
@@ -123,13 +124,13 @@
 {
      #list window del 1;
      #list window ins -1 {%0};
-     #draw green rounded box 1 1 10 201 $window[-10..-1]
+     #draw white rounded box 1 1 10 201 $window[-10..-1]
 }
 
 #ALIAS {test}
 {
-     #showme <138>Bubba tells you: "hello";
+     #showme <138>Bubba tells you, "hello";
      #showme <158>Pamela says: "bye";
-     #showme <168>Bobbo tells you in elvish: "bli bla blo"
+     #showme <168>Bobbo tells you in elvish, "bli bla blo"
 }		      
 
