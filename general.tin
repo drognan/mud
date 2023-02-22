@@ -10,8 +10,14 @@
 
 #alias {cn} {count mana potions;count true cure waters}
 
-#action {^For a total of %1 true cure waters in your invertory.$} {#VAR NUM_TRUES %1;#show {<088>Heals: <018>$NUM_TRUES} {-2} {2}}}
-#action {^For a total of %1 mana potions in your inventory.$} {#VAR NUM_MANAS %1;#show {<088>Manas: <048>$NUM_MANAS} {-2} {10}}
+#action {^For a total of %1 true cure waters in your invertory.$} {
+	#VAR NUM_TRUES %1;
+	#show {Heals: <018>$NUM_TRUES} {-2} {2};
+	}
+#action {^For a total of %1 mana potions in your inventory.$} {
+	#VAR NUM_MANAS %1;
+	#show {Manas: <018>$NUM_MANAS} {-2} {15};
+	}
 
 /* ------------------------- TELL WINDOW  ------------------------------------------------- */
 
