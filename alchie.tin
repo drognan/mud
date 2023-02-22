@@ -1,0 +1,33 @@
+#read config.tin
+#read general.tin
+#read hud.tin
+#read keypad.tin
+#read map.tin
+#read org.tin
+
+
+/* ------------------------- ACTIONS ------------------------------------------------- */
+#action {The frost cloak covering you melts away.} {#echo {<ffa>cast frost cloak me};cast frost cloak me}
+#action {Your Water Shield Spell Expires!} {#echo {<ffa>cast water shield me};cast water shield me}
+#action {You feel your resistance to %1 leave you.} {#echo {<ffa>cast resist %1 me};cast resist %1 me}
+#action {The ice armour surrounding you melts away.} {#echo {<ffa>cast ice armour me};cast ice armour me}
+
+
+#action {^%* says loudly%*, "defs %1"} {#echo {<ffa>def %1};def %1}
+
+/* ------------------------- ALIASES ------------------------------------------------ */
+#alias ac {#echo {<ffa>cast ice armour me};cast ice armour me}
+#alias ac2 {#echo {<ffa>cast frost cloak me};cast frost cloak me}
+#alias shi {#echo {<ffa>cast water shield me};cast water shield me}
+#alias rm {#echo {<ffa>cast resist magic me};cast resist magic me}
+#alias rc {#echo {<ffa>cast resist cold me};cast resist cold me}
+
+#alias {buff} {echo {<ffa>Buffar};get 7 str potions from bp;#7 drink str potion;get 7 int potions from bp;#7 drink int potion}
+
+#alias {def} {
+		#echo {<ffa>cast ice armour %1};cast ice armour %1;
+		#delay {3} {#echo {<ffa>cast frost cloak %1};cast frost cloak %1};
+		#delay {6} {#echo {<ffa>cast water shield %1};cast water shield %1};
+		#delay {9} {#echo {<ffa>cast resist magic %1};cast resist magic %1};
+		#delay {12} {#echo {<ffa>cast resist cold %1};cast resist cold %1}
+  	     }	

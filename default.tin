@@ -1,71 +1,11 @@
-#CONFIG {AUTO TAB} {5000}
-#CONFIG {BUFFER SIZE} {10000}
-#CONFIG {CHARSET} {ISO1TOUTF8}
-#CONFIG {COLOR MODE} {TRUE}
-#CONFIG {COLOR PATCH} {OFF}
-#CONFIG {COMMAND COLOR} {\e[0;37m}
-#CONFIG {COMMAND ECHO} {ON}
-#CONFIG {CONNECT RETRY} {0.0}
-#CONFIG {HISTORY SIZE} {1000}
-#CONFIG {LOG MODE} {HTML}
-#CONFIG {MOUSE} {OFF}
-#CONFIG {PACKET PATCH} {AUTO OFF}
-#CONFIG {RANDOM SEED} {2642034883}
-#CONFIG {REPEAT CHAR} {!}
-#CONFIG {REPEAT ENTER} {ON}
-#CONFIG {SCREEN READER} {OFF}
-#CONFIG {SCROLL LOCK} {ON}
-#CONFIG {SPEEDWALK} {OFF}
-#CONFIG {TAB WIDTH} {8}
-#CONFIG {TELNET} {ON}
-#CONFIG {TINTIN CHAR} {#}
-#CONFIG {VERBATIM} {OFF}
-#CONFIG {VERBATIM CHAR} {\}
-#CONFIG {VERBOSE} {OFF}
-#CONFIG {WORDWRAP} {OFF}
-
-#PATHDIR {d} {u} {32}
-#PATHDIR {e} {w} {2}
-#PATHDIR {n} {s} {1}
-#PATHDIR {ne} {sw} {3}
-#PATHDIR {nw} {se} {9}
-#PATHDIR {s} {n} {4}
-#PATHDIR {se} {nw} {6}
-#PATHDIR {sw} {ne} {12}
-#PATHDIR {u} {d} {16}
-#PATHDIR {w} {e} {8}
-
 #session rod mud.rod.org 3000
 #split 10 1 0 -200 1
 
 #ticker {tic} {save} {300}
 
-#action {The frost cloak covering you melts away.} {cast frost cloak me}
-#action {Your Water Shield Spell Expires!} {cast water shield me}
-#action {You feel your resistance to %1 leave you.} {cast resist %1 me}
-#action {The ice armour surrounding you melts away.} {cast ice armour me}
-
-
-
-
-#alias ef {effects}
-#alias re {reply %0}
-#alias orgin {n;n;n;move curtain;u;u;u;n;ne;nw;enter statue;in;in;s}
-#alias {buff} NOW TRIGGERS {get 7 str potions from bp;#7 drink str potion;get 7 int potions from bp;#7 drink int potion}
-#alias {def} {
-		cast ice armour %1;
-		#delay {3} {cast frost cloak %1};
-		#delay {6} {cast water shield %1};
-		#delay {9} {cast resist magic %1};
-		#delay {12} {cast resist cold %1};
-	    }
-#action {^%* says loudly%*, "defs %1"} {def %1}
-
-#alias ac {cast ice armour me}
-#alias ac2 {cast frost cloak me}
-#alias shi {cast water shield me}
-#alias rm {cast resist magic me}
-#alias rc {cast resist cold me}
+#alias {ef} {#echo <ffa>effects;effects;}
+#alias {sh} {#echo <ffa>sheet;sheet;}
+#alias {re} {#echo <ffa>reply %0;reply %0}
 
 #HIGHLIGHT {Archmagus of Aqua Planum} {<aee>}
 #HIGHLIGHT {Barbizon} {bold yellow}
@@ -80,20 +20,19 @@
 #HIGHLIGHT {Engineers} {bold yellow}
 #HIGHLIGHT {%* {is|are} here.} {red}
 
-
-
-#action {^Hp: {\d+}\({\d+}\)} {#echo yeh %1 %2}
-#MACRO {\eOl} {down}
-#MACRO {\eOm} {up}
-#MACRO {\eOq} {sw}
-#MACRO {\eOr} {s}
-#MACRO {\eOs} {se}
-#MACRO {\eOt} {w}
-#MACRO {\eOu} {look}
-#MACRO {\eOv} {e}
-#MACRO {\eOw} {nw}
-#MACRO {\eOx} {n}
-#MACRO {\eOy} {ne}
+#MACRO {\eOo} {#echo <ffa>in;in;}
+#MACRO {\eOj} {#echo <ffa>out;out;}
+#MACRO {\eOk} {#echo <ffa>down;down;}
+#MACRO {\eOm} {#echo <ffa>up;up;}
+#MACRO {\eOq} {#echo <ffa>sw;sw;}
+#MACRO {\eOr} {#echo <ffa>s;s;}
+#MACRO {\eOs} {#echo <ffa>se;se;}
+#MACRO {\eOt} {#echo <ffa>w;w;}
+#MACRO {\eOu} {#echo <ffa>look;look;}
+#MACRO {\eOv} {#echo <ffa>ne;e;}
+#MACRO {\eOw} {#echo <ffa>nw;nw;}
+#MACRO {\eOx} {#echo <ffa>n;n;}
+#MACRO {\eOy} {#echo <ffa>ne;ne;}
 
 
 #VARIABLE {window}

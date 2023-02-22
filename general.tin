@@ -1,0 +1,58 @@
+#session rod mud.rod.org 3000
+
+#ticker {tic} {save} {300}
+
+#alias {ef} {#echo <ffa>effects;effects;}
+#alias {sh} {#echo <ffa>sheet;sheet;}
+#alias {re} {#echo <ffa>reply %0;reply %0}
+
+/* ------------------------- POTION COUNTER  ---------------------------------------------- */
+
+#alias {cn} {count mana potions;count true cure waters}
+
+#action {^For a total of %1 true cure waters in your invertory.$} {#VAR NUM_TRUES %1;#show {<088>Heals: <018>$NUM_TRUES} {-2} {2}}}
+#action {^For a total of %1 mana potions in your inventory.$} {#VAR NUM_MANAS %1;#show {<088>Manas: <048>$NUM_MANAS} {-2} {10}}
+
+/* ------------------------- TELL WINDOW  ------------------------------------------------- */
+
+#split 10 2 1 -201 1
+
+#VARIABLE {window}
+{
+     {1} {}
+     {2} {}
+     {3} {}
+     {4} {}
+     {5} {}
+     {6} {}
+     {7} {}
+     {8} {}
+     {9} {}
+     {10} {}
+}
+
+#ACTION {~%1 tells you%*, "%2}
+{
+     showtowin %1 tells you: "%2
+}
+
+#ACTION {~%1 says%*, "%2}
+{
+     showtowin %1 says: "%2
+}
+
+#ALIAS {showtowin}
+{
+     #list window del 1;
+     #list window ins -1 {%0};
+     #draw white crossed box 1 1 10 202 $window[-10..-1]
+}
+
+#ALIAS {test}
+{
+     #showme <138>Bubba tells you, "hello";
+     #showme <158>Pamela says, "bye";
+     #showme <178>Pamela says in Orkish, "bye";
+     #showme <168>Bobbo tells you in elvish, "bli bla blo"
+}		      
+
