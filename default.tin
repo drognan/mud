@@ -44,12 +44,13 @@
 #action {Your Water Shield Spell Expires!} {cast water shield me}
 #action {You feel your resistance to %1 leave you.} {cast resist %1 me}
 #action {The ice armour surrounding you melts away.} {cast ice armour me}
-
+#alias {buff} {get 7 str potions from bp;#7 drink str potion;get 7 int potions from bp;#7 drink str potion}
 
 
 
 #alias ef {effects}
 #alias re {reply %0}
+#alias sh {sheet}
 #alias orgin {n;n;n;move curtain;u;u;u;n;ne;nw;enter statue;in;in;s}
 #alias {buff} NOW TRIGGERS {get 7 str potions from bp;#7 drink str potion;get 7 int potions from bp;#7 drink int potion}
 #alias {def} {
