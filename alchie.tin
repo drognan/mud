@@ -4,6 +4,7 @@
 #read keypad.tin
 #read map.tin
 #read org.tin
+#read highlight.tin
 
 
 /* ------------------------- ACTIONS ------------------------------------------------- */
@@ -22,7 +23,7 @@
 #alias rm {#echo {<ffa>cast resist magic me};cast resist magic me}
 #alias rc {#echo {<ffa>cast resist cold me};cast resist cold me}
 
-#alias {buff} {echo {<ffa>Buffar};get 7 str potions from bp;#7 drink str potion;get 7 int potions from bp;#7 drink int potion}
+#alias {buff} {#echo {<ffa>Buffar};get 7 str potions from bp;#7 drink str potion;get 7 int potions from bp;#7 drink int potion}
 
 #alias {def} {
 		#echo {<ffa>cast ice armour %1};cast ice armour %1;
