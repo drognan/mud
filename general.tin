@@ -8,16 +8,32 @@
 
 /* ------------------------- POTION COUNTER  ---------------------------------------------- */
 
-#alias {cn} {count mana potions;count true cure waters}
+#VAR NUM_TRUES 0
+#VAR NUM_MANAS 0
+#VAR NUM_VAPORS 0
+#VAR NUM_DETOX 0
+#VAR NUM_RESTORES 0
 
-#action {^For a total of %1 true cure waters in your invertory.$} {
-	#VAR NUM_TRUES %1;
-	#show {Heals: <014>$NUM_TRUES} {-2} {2};
+#alias {draw_potions} {
+	#show {<088>Heals: <018>$NUM_TRUES} {-2} {2};
+	#show {<088>Manas: <048>$NUM_MANAS} {-2} {15};
+	#show {<088>Vapors: <068>$NUM_VAPORS} {-2} {28};
+	#show {<088>Detox: <018>$NUM_DETOX} {-2} {41};
+	#show {<088>Restores: <038>$NUM_RESTORES} {-2} {54};
 	}
-#action {^For a total of %1 mana potions in your inventory.$} {
-	#VAR NUM_MANAS %1;
-	#show {Manas: <018>$NUM_MANAS} {-2} {15};
-	}
+
+draw_potions
+
+#alias {cn} {count mana potions;count true cure waters;count vapor form potions;count detox potions;count restore potions}
+
+#action {^For a total of %1 true cure waters in your inventory.$} {#VAR NUM_TRUES %1;draw_potions}
+#action {^For a total of %1 mana potions in your inventory.$} {#VAR NUM_MANAS %1;draw_potions}
+#action {^For a total of %1 vapor form potions in your inventory.$} {#VAR NUM_VAPORS %1;draw_potions}
+#action {^For a total of %1 detox potions in your inventory.$} {#VAR NUM_DETOX %1;draw_potions}
+#action {^For a total of %1 restore potions in your inventory.$} {#VAR NUM_RESTORES %1;draw_potions}
+
+#action {You uncork the bottle, at the same time literally smelling the power contained within.} {#math {NUM_MANAS} {$NUM_MANAS - 1};draw_potions}
+#action {With a quick flick of the wrist, you knock back the sweet syrupy liquid.} {#math {NUM_TRUES} {$NUM_TRUES - 1};draw_potions}
 
 /* ------------------------- TELL WINDOW  ------------------------------------------------- */
 

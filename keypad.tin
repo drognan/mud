@@ -1,3 +1,9 @@
+#MACRO {\eOP} {f1}
+#MACRO {\eOQ} {f2}
+#MACRO {\eOR} {f3}
+#MACRO {\eOS} {f4}
+
+
 #MACRO {\eOo} {#echo <ffa>in;in;}
 #MACRO {\eOj} {#echo <ffa>out;out;}
 #MACRO {\eOk} {#echo <ffa>down;down;}
