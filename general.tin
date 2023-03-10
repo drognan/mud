@@ -2,9 +2,9 @@
 
 #ticker {tic} {save} {300}
 
-#alias {ef} {#echo <ffa>effects;effects;}
-#alias {sh} {#echo <ffa>sheet;sheet;}
-#alias {re} {#echo <ffa>reply %0;reply %0}
+#alias {ef} {effects;}
+#alias {sh} {sheet;}
+#alias {re} {reply %0}
 
 /* ------------------------- POTION COUNTER  ---------------------------------------------- */
 
