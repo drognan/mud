@@ -5,13 +5,16 @@
 
 #ALIAS {brew_potion} 
 {
+    #ECHO {brewing..};
     #IF {&CURRENT_POTION[] == 0 && &BREW_LIST[] > 0}
     {
+        #ECHO {Next item...};
         #VAR {CURRENT_POTION} {$BREW_LIST[1]};
         #LIST {BREW_LIST} {DELETE} {1};
     };
     #ELSEIF {$CURRENT_POTION[num] == 0 && &BREW_LIST[] > 0} 
     {
+        #ECHO {Next item...};
         #VAR {CURRENT_POTION} {$BREW_LIST[1]};
         #LIST {BREW_LIST} {DELETE} {1};
     };
@@ -23,8 +26,9 @@
 
     #LOCAL {num} {$CURRENT_POTION[num]};
     #LOCAL {type} {$CURRENT_POTION[type]};
+    #ECHO {.. $num $type};
    
-    #IF {"$type" == "strength|dexterity|constitution|wisdom|intelligence|detox|fire|cold|acid|magic|psionic|poison|sharp|blunt|pierce|electricity|cyan"} 
+    #IF {"$type" == "{strength|dexterity|constitution|wisdom|intelligence|detox|fire|cold|acid|magic|psionic|poison|sharp|blunt|pierce|electricity|cyan}"} 
     {
         #LOCAL {cost} {200};
         #MATH {num_potions} {$CURRENT_GP / $cost};
@@ -99,30 +103,35 @@
 {
     #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
     #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+    drop potions;
 }
 
 #ACTION {You have created %1 Mana {Potion|Potions}.} 
 {
     #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
     #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+    drop mana potions;
 }
 
 #ACTION {You have created %1 True Cure {Water|Waters}.} 
 {
     #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
     #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+    drop true cure waters;
 }
 
 #ACTION {You have created %1 {Potions|Potions} of Restore Water.} 
 {
     #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
     #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+    drop restore waters;
 }
 
 #ACTION {You finish an incantation and a spell of dizziness overcomes you.  Magic springs foward from your hands, transforming the water inside the potion into a rich red liquid.} 
 {
     #MATH {REMAINING} {$CURRENT_POTION[num] - 1};
     #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+    put vapor form potion in bp;
 }
 
 
@@ -183,8 +192,8 @@
             order_potion %1 poison;
             order_potion %1 electricity;
         };
-
-        #LIST {BREW_LIST} {ADD} {{{num}{%1}{type}{$ORDER_TYPE}}};
+        
+        #IF {"$ORDER_TYPE" != "resistset"} {#LIST {BREW_LIST} {ADD} {{{num}{%1}{type}{$ORDER_TYPE}}}};
     };
     #ELSE 
     {
@@ -193,7 +202,7 @@
 }
 
 
-#ALIAS {order_clear} {#LIST {BREW_LIST} {CLEAR}}
+#ALIAS {order_clear} {#LIST {BREW_LIST} {CLEAR};#VARIABLE {CURRENT_POTION} {}}
 #ALIAS {order_list} 
 {
     #FOREACH {$BREW_LIST[%*]} {order_line} {#SHOW $order_line[num]: $order_line[type]} 
