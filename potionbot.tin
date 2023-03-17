@@ -1,2 +1,144 @@
-#list {brew_list} {clear}
+#LIST {BREW_LIST} {CLEAR}
 
+#VAR {POTION_BOT} {0}
+#VAR {CURRENT_POTION} {}
+
+#ALIAS {brew_potion} 
+{
+    #IF {&CURRENT_POTION[] == 0 && &BREW_LIST[] > 0}
+    {
+        #VAR {CURRENT_POTION} {$BREW_LIST[1]};
+        #LIST {BREW_LIST} {DELETE} {1};
+    };
+    #ELSEIF {$CURRENT_POTION[num] == 0 && &BREW_LIST[] > 0} 
+    {
+        #VAR {CURRENT_POTION} {$BREW_LIST[1]};
+        #LIST {BREW_LIST} {DELETE} {1};
+    };
+    #ELSEIF {&CURRENT_POTION[] == 0 && &BREW_LIST[] == 0}
+    {
+        #ECHO {No Potions in Queue};
+        #RETURN;
+    };
+
+    #LOCAL {num} {$CURRENT_POTION[num]};
+    #LOCAL {type} {$CURRENT_POTION[type]};
+    
+    #LOCAL {cost} {200};
+    #MATH {num_potions} {$CURRENT_GP / $cost};
+    #MATH {num_potions} {@clamp{$num_potions;$num}};
+    #ECHO {$CURRENT_GP ---- $num_potions};
+    #ECHO {Brewing $num_potions $type};
+
+    #ECHO {detach $num_potions potion;};
+    #ECHO {create $num_potions $type;};
+
+}
+
+
+#ACTION {You are the proud owner of %1 %2 Potions.} 
+{
+    #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
+    #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+}
+
+
+#ALIAS {ttt} 
+{
+    order_potion 20 int;
+    order_potion 30 con;
+    order_potion 40 mana;
+    order_potion 40 resistset;
+}
+
+
+#ALIAS {order_potion %1 %2} 
+{
+    #ECHO {%1 - %2};
+
+    #IF {"%2" == "{cyan|mana|int|con|str|dex|wis|true|resistset|restore|detox|fire|cold|acid|magic|psionic|poison|sharp|blunt|pierce|electricity}"}
+    {   
+        #LOCAL {ORDER_TYPE} {%2};
+
+        #IF {"$ORDER_TYPE" == "int"} {#LOCAL {ORDER_TYPE} {intelligence}};
+        #IF {"$ORDER_TYPE" == "con"} {#LOCAL {ORDER_TYPE} {constitution}};
+        #IF {"$ORDER_TYPE" == "str"} {#LOCAL {ORDER_TYPE} {strength}};
+        #IF {"$ORDER_TYPE" == "dex"} {#LOCAL {ORDER_TYPE} {dexterity}};
+        #IF {"$ORDER_TYPE" == "wis"} {#LOCAL {ORDER_TYPE} {wisdom}};
+        #IF {"$ORDER_TYPE" == "resistset"}
+        {
+            order_potion %1 blunt;
+            order_potion %1 sharp;
+            order_potion %1 pierce;
+            order_potion %1 fire;
+            order_potion %1 cold;
+            order_potion %1 acid;
+            order_potion %1 magic;
+            order_potion %1 psionic;
+            order_potion %1 poison;
+            order_potion %1 electricity;
+        };
+
+        #LIST {BREW_LIST} {ADD} {{{num}{%1}{type}{$ORDER_TYPE}}};
+    };
+    #ELSE 
+    {
+        #ECHO {Valid potions: cyan|mana|int|con|str|dex|wis|true|resistset|restore|detox|fire|cold|acid|magic|psionic|poison|sharp|blunt|pierce|electricity}
+    }
+}
+
+
+#ALIAS {order_clear} {#LIST {BREW_LIST} {CLEAR}}
+#ALIAS {order_list} 
+{
+    #FOREACH {$BREW_LIST[%*]} {order_line} {#SHOW $order_line[num]: $order_line[type]} 
+}
+
+#ALIAS {potion_bot %1} 
+{ 
+    #IF {"%1" == "off"}
+    {
+        #VAR {POTION_BOT} {0};
+    };
+    #ELSEIF {"%1" == "on"}
+    {
+        #VAR {POTION_BOT} {1};
+    };
+    #ELSEIF {"%1" == "auto"}
+    {
+        #VAR {POTION_BOT} {2};
+    };
+
+    #ECHO $POTION_BOT;
+  
+    #ECHO {Potion bot: @on_off_color{$POTION_BOT}};
+}
+
+
+#FUNCTION {on_off_color} 
+{
+    #IF {"%1" == "off" || %1 == 0}
+    {
+        #RETURN <018>OFF;
+    };
+    #IF {"%1" == "on" || %1 == 1}
+    {
+        #RETURN <028>ON;
+    };
+    #IF {"%1" == "auto" || %1 == 2}
+    {
+        #RETURN <068>AUTO;
+    };
+
+    #RETURN <123>N/A;
+}
+
+
+
+
+#FUNCTION {clamp}
+{
+    #IF {%1 > %2} {#RETURN %2};
+    #RETURN %1;
+
+}
