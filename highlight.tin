@@ -9,6 +9,10 @@
 #highlight {Akzar'gorak} {<028>}
 #highlight {Gorak} {<028>}
 #highlight {Society of Scryers} {<038>}
+#highlight {Engineers} {<038>}
 #highlight {Barbizon} {<038>}
+#highlight {Rhea} {<068>}
+
+#highlight {^{.*} {is|are} here.$} {<018>}
 
 #highlight {Archmagus of Aqua Planum} {<168>}

@@ -1,0 +1,11 @@
+#ACTION {^%* [%*].$} {do_bot_alias}
+
+#VAR {DO_BOT} {true}
+
+
+#ALIAS {do_bot_alias} {cast acid lash janne}
+
+#ACTION {^Your intended target is not around.$} {#path walk}
+
+
+#VARIABLE {pesvint} {w;w;w;w;w;w;e;n;n;n;n;n;n;n;e;e;e;e;e;n;s;e;e;e;e;e;s;s;s;s;s;s;s;e;w;s;s;s;s;s;s;s;w;w;w;w;w;s;n;w;w;w;w;w;n;n;n;n;n;n;n;e;e;e;e;e}

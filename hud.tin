@@ -1,2 +1,49 @@
-#PROMPT {^Hp: %*} {<900>%0} {-3} {3}
+#ACTION {^Hp: {\d+}({\d+}) %* Gp: {\d+}({\d+}) Xp: {\d+}({\d+})%*}  
+{
+    #VAR {CURRENT_HP} {%1};
+    #VAR {MAX_HP} {%2};
+    #VAR {CURRENT_GP} {%4};
+    #VAR {MAX_GP} {%5};
+    #VAR {CURRENT_XP} {%6};
+    #VAR {MAX_XP} {%7};
+
+    #MATH {HP_DIFF} {$CURRENT_HP - $MAX_HP};
+    #MATH {GP_DIFF} {$CURRENT_GP - $MAX_GP};
+    #MATH {XP_DIFF} {$CURRENT_XP - $MAX_XP};
+    
+    #VAR {HP_COLOR} {@color_percentage{$CURRENT_HP;$MAX_HP}};
+    #VAR {GP_COLOR} {@color_percentage{$CURRENT_GP;$MAX_GP}};
+    #VAR {XP_COLOR} {@color_percentage{$CURRENT_XP;$MAX_XP}};
+
+    
+    #VAR {HP_DIFF_COLOR} {@color_positive{$HP_DIFF}};
+    #VAR {GP_DIFF_COLOR} {@color_positive{$GP_DIFF}};
+    #VAR {XP_DIFF_COLOR} {@color_positive{$XP_DIFF}};
+
+
+    #ECHO {Hp: @color_percentage{$CURRENT_HP;$MAX_HP}$CURRENT_HP<078>(<168>$MAX_HP<078>) [$HP_DIFF] %3 Gp: @color_percentage{$CURRENT_GP;$MAX_GP}$CURRENT_GP<078>(<168>$MAX_GP<078>) X[$GP_DIFF] p: @color_percentage{$CURRENT_XP;$MAX_XP}$CURRENT_XP<078>(<168>$MAX_XP<078>) [$XP_DIFF] %8};
+    
+}  
+
+
+/* ------------------------- FUNCTIONS ------------------------------------------------- */
+
+#FUNCTION {color_percentage} 
+{
+    #LOCAL {percentage} {$CURRENT_HP / $MAX_HP};
+
+    #IF {$percentage >= 0 && $percentage < 0.125} {#RETURN <018>};
+    #IF {$percentage >= 0.125 && $percentage < 0.250} {#RETURN <238>}; 
+    #IF {$percentage >= 0.250 && $percentage < 0.500} {#RETURN <038>};
+    #IF {$percentage >= 0.500 && $percentage < 1.00} {#RETURN <018>};
+    #RETURN <168>;        
+}
+
+#FUNCTION {color_positive}
+{
+    #IF {%1 >= 0} {#RETURN <029>};
+    #RETURN <019>;
+
+
+}
 

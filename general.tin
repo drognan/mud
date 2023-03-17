@@ -6,6 +6,8 @@
 #alias {sh} {sheet;}
 #alias {re} {reply %0}
 
+
+
 /* ------------------------- POTION COUNTER  ---------------------------------------------- */
 
 #VAR NUM_TRUES 0
@@ -32,8 +34,8 @@ draw_potions
 #action {^For a total of %1 detox potions in your inventory.$} {#VAR NUM_DETOX %1;draw_potions}
 #action {^For a total of %1 restore potions in your inventory.$} {#VAR NUM_RESTORES %1;draw_potions}
 
-#action {You uncork the bottle, at the same time literally smelling the power contained within.} {#math {NUM_MANAS} {$NUM_MANAS - 1};draw_potions}
-#action {With a quick flick of the wrist, you knock back the sweet syrupy liquid.} {#math {NUM_TRUES} {$NUM_TRUES - 1};draw_potions}
+#action {^You uncork the bottle, at the same time literally smelling the power contained within.} {#math {NUM_MANAS} {$NUM_MANAS - 1};draw_potions}
+#action {^With a quick flick of the wrist, you knock back the sweet syrupy liquid.} {#math {NUM_TRUES} {$NUM_TRUES - 1};draw_potions}
 
 /* ------------------------- TELL WINDOW  ------------------------------------------------- */
 
@@ -77,4 +79,6 @@ draw_potions
      #showme <178>Pamela says in Orkish, "bye";
      #showme <168>Bobbo tells you in elvish, "bli bla blo"
 }		      
+
+
 
