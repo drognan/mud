@@ -1,5 +1,9 @@
 #ACTION {^Hp: {\d+}({\d+}) %* Gp: {\d+}({\d+}) Xp: {\d+}({\d+})%*}  
 {
+    #VAR {OLD_HP} {$CURRENT_HP};
+    #VAR {OLD_GP} {$CURRENT_GP};
+    #VAR {OLD_XP} {$CURRENT_XP};
+
     #VAR {CURRENT_HP} {%1};
     #VAR {MAX_HP} {%2};
     #VAR {CURRENT_GP} {%4};
@@ -7,9 +11,9 @@
     #VAR {CURRENT_XP} {%6};
     #VAR {MAX_XP} {%7};
 
-    #MATH {HP_DIFF} {$CURRENT_HP - $MAX_HP};
-    #MATH {GP_DIFF} {$CURRENT_GP - $MAX_GP};
-    #MATH {XP_DIFF} {$CURRENT_XP - $MAX_XP};
+    #MATH {HP_DIFF} {$CURRENT_HP - $OLD_HP};
+    #MATH {GP_DIFF} {$CURRENT_GP - $OLD_GP};
+    #MATH {XP_DIFF} {$CURRENT_XP - $OLD_XP};
     
     #VAR {HP_COLOR} {@color_percentage{$CURRENT_HP;$MAX_HP}};
     #VAR {GP_COLOR} {@color_percentage{$CURRENT_GP;$MAX_GP}};
@@ -20,8 +24,12 @@
     #VAR {GP_DIFF_COLOR} {@color_positive{$GP_DIFF}};
     #VAR {XP_DIFF_COLOR} {@color_positive{$XP_DIFF}};
 
-
-    #ECHO {Hp: @color_percentage{$CURRENT_HP;$MAX_HP}$CURRENT_HP<078>(<168>$MAX_HP<078>) [$HP_DIFF] %3 Gp: @color_percentage{$CURRENT_GP;$MAX_GP}$CURRENT_GP<078>(<168>$MAX_GP<078>) X[$GP_DIFF] p: @color_percentage{$CURRENT_XP;$MAX_XP}$CURRENT_XP<078>(<168>$MAX_XP<078>) [$XP_DIFF] %8};
+    #IF {$GP_DIFF > 42 || $HP_DIFF != 0 || $XP_DIFF != 0}    
+    {
+        #ECHO {Hp: $HP_COLOR$CURRENT_HP<078>(<168>$MAX_HP<078>) [$HP_DIFF_COLOR$HP_DIFF<078>] %3 Gp: $GP_COLOR$CURRENT_GP<078>(<168>$MAX_GP<078>) [$GP_DIFF_COLOR$GP_DIFF<078>] Xp: $XP_COLOR$CURRENT_XP<078>(<168>$MAX_XP<078>) [$XP_DIFF_COLOR$XP_DIFF<078>] %8};
+    };
+   
+    #LINE IGNORE #SHOW {Hp: $HP_COLOR$CURRENT_HP<078>(<168>$MAX_HP<078>) [$HP_DIFF_COLOR$HP_DIFF<078>] %3 Gp: $GP_COLOR$CURRENT_GP<078>(<168>$MAX_GP<078>) [$GP_DIFF_COLOR$GP_DIFF<078>] Xp: $XP_COLOR$CURRENT_XP<078>(<168>$MAX_XP<078>) [$XP_DIFF_COLOR$XP_DIFF<078>] %8} {-4} {2};
     
 }  
 
@@ -30,12 +38,12 @@
 
 #FUNCTION {color_percentage} 
 {
-    #LOCAL {percentage} {$CURRENT_HP / $MAX_HP};
+    #LOCAL {percentage} {%1 / %2};
 
     #IF {$percentage >= 0 && $percentage < 0.125} {#RETURN <018>};
     #IF {$percentage >= 0.125 && $percentage < 0.250} {#RETURN <238>}; 
     #IF {$percentage >= 0.250 && $percentage < 0.500} {#RETURN <038>};
-    #IF {$percentage >= 0.500 && $percentage < 1.00} {#RETURN <018>};
+    #IF {$percentage >= 0.500 && $percentage < 1.00} {#RETURN <068>};
     #RETURN <168>;        
 }
 
