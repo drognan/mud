@@ -6,6 +6,12 @@
 #alias {sh} {sheet;}
 #alias {re} {reply %0}
 
+#alias {heal} {get true cure potion from bp;drink true cure water}
+#alias {dm} {get mana potion from bp;drink mana potion}
+#alias {dc} {get cyan potion from bp;drink cypan potion}
+#alias {detox} {get detox potion from bp;drink detox potion}
+#alias {restore} {get restore potion from bp;drink restore potion}
+
 
 
 /* ------------------------- POTION COUNTER  ---------------------------------------------- */
@@ -16,27 +22,37 @@
 #VAR NUM_DETOX 0
 #VAR NUM_RESTORES 0
 
+
+#alias {draw_trues} {#show {<088>Heals: <118>$NUM_TRUES} {-3} {2}}
+#alias {draw_manas} {#show {<088>Manas: <148>$NUM_MANAS} {-3} {15}}
+#alias {draw_vapors} {#show {<088>Vapors: <168>$NUM_VAPORS} {-3} {28}}
+#alias {draw_detox} {#show {<088>Detox: <118>$NUM_DETOX} {-3} {41}}
+#alias {draw_restores} {#show {<088>Restores: <138>$NUM_RESTORES} {-3} {54}}
+
 #alias {draw_potions}
 {
-	#show {<088>Heals: <118>$NUM_TRUES} {-3} {2};
-	#show {<088>Manas: <148>$NUM_MANAS} {-3} {15};
-	#show {<088>Vapors: <168>$NUM_VAPORS} {-3} {28};
-	#show {<088>Detox: <118>$NUM_DETOX} {-3} {41};
-	#show {<088>Restores: <138>$NUM_RESTORES} {-3} {54};
+    draw_trues;
+    draw_manas;
+    draw_vapors;
+    draw_detox;
+    draw_restores;
 }
-
-draw_potions
 
 #alias {cn} {count mana potions;count true cure waters;count vapor form potions;count detox potions;count restore potions}
 
-#action {^For a total of %1 true cure waters in your inventory.$} {#VAR NUM_TRUES %1;draw_potions}
-#action {^For a total of %1 mana potions in your inventory.$} {#VAR NUM_MANAS %1;draw_potions}
-#action {^For a total of %1 vapor form potions in your inventory.$} {#VAR NUM_VAPORS %1;draw_potions}
-#action {^For a total of %1 detox potions in your inventory.$} {#VAR NUM_DETOX %1;draw_potions}
-#action {^For a total of %1 restore potions in your inventory.$} {#VAR NUM_RESTORES %1;draw_potions}
+#action {^For a total of %1 true cure waters in your inventory.$} {#VAR NUM_TRUES %1;draw_trues}
+#action {^For a total of %1 mana potions in your inventory.$} {#VAR NUM_MANAS %1;draw_manas}
+#action {^For a total of %1 vapor form potions in your inventory.$} {#VAR NUM_VAPORS %1;draw_vapors}
+#action {^For a total of %1 detox potions in your inventory.$} {#VAR NUM_DETOX %1;draw_detox}
+#action {^For a total of %1 restore potions in your inventory.$} {#VAR NUM_RESTORES %1;draw_restores}
 
 #action {^You uncork the bottle, at the same time literally smelling the power contained within.} {#math {NUM_MANAS} {$NUM_MANAS - 1};draw_potions}
 #action {^With a quick flick of the wrist, you knock back the sweet syrupy liquid.} {#math {NUM_TRUES} {$NUM_TRUES - 1};draw_potions}
+#action {^You drink a Vapor Form Potion and your body takes on the consistency of water vapor.} {#MATH NUM_VAPORS {$NUM_VAPORS - 1};draw_potions}
+#action {You gulp down the potion in a matter of seconds.  Your body vibrates slightly as you feel the effects of its magic.} {#MATH NUM_RESTORES {$NUM_RESTORES - 1};draw_restores}
+#action {You feel the intoxication leaving your body.} {#MATH NUM_DETOX {$NUM_DETOX - 1};draw_detox}
+
+
 
 /* ------------------------- TELL WINDOW  ------------------------------------------------- */
 

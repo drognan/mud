@@ -24,6 +24,9 @@
 #alias rc {#echo {<ffa>cast resist cold me};cast resist cold me}
 
 #alias {buff} {#echo {<ffa>Buffar};get 7 str potions from bp;#7 drink str potion;get 7 int potions from bp;#7 drink int potion}
+#alias {vap} {drink vapor form potion}
+#action {You cannot find a vapor form potion to drink.} {get 2 vapor form potions from bp;drink vapor form potion}
+#action {You drink a Vapor Form Potion and your body takes on the consistency of water vapor.} {#VAR NUM_VAPORS {$NUM_VAPORS - 1}}
 
 #alias {def} 
 {

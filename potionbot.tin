@@ -23,22 +23,105 @@
 
     #LOCAL {num} {$CURRENT_POTION[num]};
     #LOCAL {type} {$CURRENT_POTION[type]};
-    
-    #LOCAL {cost} {200};
-    #MATH {num_potions} {$CURRENT_GP / $cost};
-    #MATH {num_potions} {@clamp{$num_potions;$num}};
-    #ECHO {$CURRENT_GP ---- $num_potions};
-    #ECHO {Brewing $num_potions $type};
+   
+    #IF {"$type" == "strength|dexterity|constitution|wisdom|intelligence|detox|fire|cold|acid|magic|psionic|poison|sharp|blunt|pierce|electricity|cyan"} 
+    {
+        #LOCAL {cost} {200};
+        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {@clamp{$num_potions;$num}};
 
-    #ECHO {detach $num_potions potion;};
-    #ECHO {create $num_potions $type;};
+        #ECHO {Brewing $num_potions $type};
 
+        #IF {$num_potions > 0} {
+            detach $num_potions potion;
+            create $num_potions $type;
+        };
+    };
+    #IF {"$type" == "mana"}
+    {
+        #LOCAL {cost} {1100};
+        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {@clamp{$num_potions;$num}};
+
+        #ECHO {Brewing $num_potions $type};
+
+        #IF {$num_potions > 0} {
+            detach $num_potions potion;
+            cast mana potion $num_potions;
+        };
+    };
+    #IF {"$type" == "true"}
+    {
+        #LOCAL {cost} {1000};
+        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {@clamp{$num_potions;$num}};
+
+        #ECHO {Brewing $num_potions $type};
+
+        #IF {$num_potions > 0} {
+            detach $num_potions potion;
+            cast true cure water $num_potions;
+        };
+    };
+    #IF {"$type" == "restore"}
+    {
+        #LOCAL {cost} {1100};
+        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {@clamp{$num_potions;$num}};
+
+        #ECHO {Brewing $num_potions $type};
+
+        #IF {$num_potions > 0} {
+            detach $num_potions potion;
+            cast restore water $num_potions;
+        };
+    };
+    #IF {"$type" == "vapor"}
+    {
+        #LOCAL {cost} {1750};
+        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {@clamp{$num_potions;$num}};
+
+        #ECHO {Brewing 1 $type};
+
+        #IF {$num_potions > 0} {
+            detach potion;
+            cast vapor form potion;
+        };
+    }
 }
 
+#ACTION {You are too mentally drained to create anything right now.} {dm}
 
-#ACTION {You are the proud owner of %1 %2 Potions.} 
+#ACTION {You have accidentally created %1 Baneful %2 {Potion|Potions}.} {drop baneful potions;bury baneful potions}
+
+#ACTION {You are the proud owner of %1 %2 {Potion|Potions}.} 
 {
     #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
+    #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+}
+
+#ACTION {You have created %1 Mana {Potion|Potions}.} 
+{
+    #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
+    #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+}
+
+#ACTION {You have created %1 True Cure {Water|Waters}.} 
+{
+    #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
+    #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+}
+
+#ACTION {You have created %1 {Potions|Potions} of Restore Water.} 
+{
+    #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
+    #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
+}
+
+#ACTION {You finish an incantation and a spell of dizziness overcomes you.  Magic springs foward from your hands, transforming the water inside the potion into a rich red liquid.} 
+{
+    #MATH {REMAINING} {$CURRENT_POTION[num] - 1};
     #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
 }
 
@@ -52,11 +135,33 @@
 }
 
 
+#ALIAS {unbox} {withdraw 50 bottle;put bottles in bp}
+#ACTION {You drop an empty crate to the ground and kick it away.} {put bottles in bp;unbox}
+#ALIAS {convert} 
+{
+
+    #MATH {num_bottles} {$CURRENT_GP / 200};
+    detach $num_bottles bottle;
+    cast fill bottle max;
+}
+#ACTION {In this manner you successfully create %1 Water {Potion|Potions}.} 
+{
+    put water potions in bp;
+    convert;
+}
+#ACTION {You are currently too mentally drained to cast Fill Bottle.}
+{
+    put bottles in bp;
+    dm;
+    convert;
+}
+
+
 #ALIAS {order_potion %1 %2} 
 {
     #ECHO {%1 - %2};
 
-    #IF {"%2" == "{cyan|mana|int|con|str|dex|wis|true|resistset|restore|detox|fire|cold|acid|magic|psionic|poison|sharp|blunt|pierce|electricity}"}
+    #IF {"%2" == "{vapor|cyan|mana|int|con|str|dex|wis|true|resistset|restore|detox|fire|cold|acid|magic|psionic|poison|sharp|blunt|pierce|electricity}"}
     {   
         #LOCAL {ORDER_TYPE} {%2};
 
