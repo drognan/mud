@@ -8,7 +8,7 @@
     #ECHO {brewing..};
     #IF {&CURRENT_POTION[] == 0 && &BREW_LIST[] > 0}
     {
-        #ECHO {Next item...};
+        #ECHO {Init item...};
         #VAR {CURRENT_POTION} {$BREW_LIST[1]};
         #LIST {BREW_LIST} {DELETE} {1};
     };
@@ -30,11 +30,15 @@
    
     #IF {"$type" == "{strength|dexterity|constitution|wisdom|intelligence|detox|fire|cold|acid|magic|psionic|poison|sharp|blunt|pierce|electricity|cyan}"} 
     {
-        #LOCAL {cost} {200};
-        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {$CURRENT_GP / 200};
         #MATH {num_potions} {@clamp{$num_potions;$num}};
 
         #ECHO {Brewing $num_potions $type};
+    
+        #IF {"$type" == "cyan"} 
+        {
+            #LOCAL {type} {mana};
+        };
 
         #IF {$num_potions > 0} {
             detach $num_potions potion;
@@ -43,8 +47,7 @@
     };
     #IF {"$type" == "mana"}
     {
-        #LOCAL {cost} {1100};
-        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {$CURRENT_GP / 1100};
         #MATH {num_potions} {@clamp{$num_potions;$num}};
 
         #ECHO {Brewing $num_potions $type};
@@ -56,8 +59,7 @@
     };
     #IF {"$type" == "true"}
     {
-        #LOCAL {cost} {1000};
-        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {$CURRENT_GP / 1000};
         #MATH {num_potions} {@clamp{$num_potions;$num}};
 
         #ECHO {Brewing $num_potions $type};
@@ -69,8 +71,7 @@
     };
     #IF {"$type" == "restore"}
     {
-        #LOCAL {cost} {1100};
-        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {$CURRENT_GP / 1100};
         #MATH {num_potions} {@clamp{$num_potions;$num}};
 
         #ECHO {Brewing $num_potions $type};
@@ -82,8 +83,7 @@
     };
     #IF {"$type" == "vapor"}
     {
-        #LOCAL {cost} {1750};
-        #MATH {num_potions} {$CURRENT_GP / $cost};
+        #MATH {num_potions} {$CURRENT_GP / 1750};
         #MATH {num_potions} {@clamp{$num_potions;$num}};
 
         #ECHO {Brewing 1 $type};
@@ -120,7 +120,7 @@
     drop true cure waters;
 }
 
-#ACTION {You have created %1 {Potions|Potions} of Restore Water.} 
+#ACTION {You have created %d {Potion|Potions} of Restore Water.} 
 {
     #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
     #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
@@ -193,7 +193,10 @@
             order_potion %1 electricity;
         };
         
-        #IF {"$ORDER_TYPE" != "resistset"} {#LIST {BREW_LIST} {ADD} {{{num}{%1}{type}{$ORDER_TYPE}}}};
+        #IF {"$ORDER_TYPE" != "resistset"} 
+        {
+            #LIST {BREW_LIST} {ADD} {{{num}{%1}{type}{$ORDER_TYPE}}};
+        };
     };
     #ELSE 
     {

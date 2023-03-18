@@ -24,6 +24,9 @@
     #VAR {GP_DIFF_COLOR} {@color_positive{$GP_DIFF}};
     #VAR {XP_DIFF_COLOR} {@color_positive{$XP_DIFF}};
 
+
+    #GAG {%0};
+
     #IF {$GP_DIFF > 42 || $HP_DIFF != 0 || $XP_DIFF != 0}    
     {
         #ECHO {Hp: $HP_COLOR$CURRENT_HP<078>(<168>$MAX_HP<078>) [$HP_DIFF_COLOR$HP_DIFF<078>] %3 Gp: $GP_COLOR$CURRENT_GP<078>(<168>$MAX_GP<078>) [$GP_DIFF_COLOR$GP_DIFF<078>] Xp: $XP_COLOR$CURRENT_XP<078>(<168>$MAX_XP<078>) [$XP_DIFF_COLOR$XP_DIFF<078>] %8};
