@@ -23,11 +23,32 @@
 #VAR NUM_RESTORES 0
 
 
-#alias {draw_trues} {#show {<088>Heals: <118>$NUM_TRUES} {-3} {2}}
-#alias {draw_manas} {#show {<088>Manas: <148>$NUM_MANAS} {-3} {15}}
-#alias {draw_vapors} {#show {<088>Vapors: <168>$NUM_VAPORS} {-3} {28}}
-#alias {draw_detox} {#show {<088>Detox: <118>$NUM_DETOX} {-3} {41}}
-#alias {draw_restores} {#show {<088>Restores: <138>$NUM_RESTORES} {-3} {54}}
+#alias {draw_trues} 
+{
+    #format {num_trues_str} {%-12s} {<088>Heals: <118>$NUM_TRUES};
+    #show {$num_trues_str} {-3} {2};
+}
+#alias {draw_manas} 
+{
+    #format {num_manas_str} {%-13s} {<088>Manas: <148>$NUM_MANAS};
+    #show {$num_manas_str} {-3} {15}
+}
+#alias {draw_vapors} 
+{
+
+    #format {num_vapors_str} {%-12s} {<088>Vapors: <168>$NUM_VAPORS};
+    #show {$num_vapors_str} {-3} {28}
+}
+#alias {draw_detox} 
+{
+    #format {num_detox_str} {%-12s} {<088>Detox: <118>$NUM_DETOX};
+    #show {$num_detox_str} {-3} {41}
+}
+#alias {draw_restores} 
+{
+    #format {num_restores_str} {%-12s} {<088>Restores: <138>$NUM_RESTORES};
+    #show {$num_restores_str} {-3} {54}
+}
 
 #alias {draw_potions}
 {

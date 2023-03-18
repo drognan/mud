@@ -251,11 +251,10 @@
 }
 
 
-
-
 #FUNCTION {clamp}
 {
     #IF {%1 > %2} {#RETURN %2};
     #RETURN %1;
 
 }
+
