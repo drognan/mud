@@ -35,14 +35,9 @@
 
         #ECHO {Brewing $num_potions $type};
     
-        #IF {"$type" == "cyan"} 
-        {
-            #LOCAL {type} {mana};
-        };
-
         #IF {$num_potions > 0} {
             detach $num_potions potion;
-            create $num_potions $type;
+            #IF {"$type" == "cyan"} {create $num_potions mana} {create $num_potions $type};
         };
     };
     #IF {"$type" == "mana"}
@@ -103,7 +98,7 @@
 {
     #MATH {REMAINING} {$CURRENT_POTION[num] - %1};
     #VARIABLE {CURRENT_POTION} {{num}{$REMAINING} {type}{$CURRENT_POTION[type]}};
-    drop potions;
+    drop %2 potions;
 }
 
 #ACTION {You have created %1 Mana {Potion|Potions}.} 
@@ -137,10 +132,11 @@
 
 #ALIAS {ttt} 
 {
-    order_potion 20 int;
-    order_potion 30 con;
-    order_potion 40 mana;
-    order_potion 40 resistset;
+    order_potion 14 int;
+    order_potion 14 con;
+    order_potion 14 str;
+    order_potion 14 dex;
+    order_potion 1 resistset;
 }
 
 
