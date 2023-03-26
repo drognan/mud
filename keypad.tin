@@ -4,17 +4,17 @@
 #MACRO {\eOS} {f4}
 
 
-#MACRO {\eOo} {#echo <ffa>in;in;}
-#MACRO {\eOj} {#echo <ffa>out;out;}
-#MACRO {\eOk} {#echo <ffa>down;down;}
-#MACRO {\eOm} {#echo <ffa>up;up;}
-#MACRO {\eOq} {#echo <ffa>sw;sw;}
-#MACRO {\eOr} {#echo <ffa>s;s;}
-#MACRO {\eOs} {#echo <ffa>se;se;}
-#MACRO {\eOt} {#echo <ffa>w;w;}
-#MACRO {\eOu} {#echo <ffa>look;look;}
-#MACRO {\eOv} {#echo <ffa>e;e;}
-#MACRO {\eOw} {#echo <ffa>nw;nw;}
-#MACRO {\eOx} {#echo <ffa>n;n;}
-#MACRO {\eOy} {#echo <ffa>ne;ne;}
+#MACRO {\eOo} {#echo <ffa>in;in}
+#MACRO {\eOj} {#echo <ffa>out;out}
+#MACRO {\eOk} {#echo <ffa>down;down}
+#MACRO {\eOm} {#echo <ffa>up;up}
+#MACRO {\eOq} {#echo <ffa>sw;sw}
+#MACRO {\eOr} {#echo <ffa>s;s}
+#MACRO {\eOs} {#echo <ffa>se;se}
+#MACRO {\eOt} {#echo <ffa>w;w}
+#MACRO {\eOu} {#echo <ffa>look;look}
+#MACRO {\eOv} {#echo <ffa>e;e}
+#MACRO {\eOw} {#echo <ffa>nw;nw}
+#MACRO {\eOx} {#echo <ffa>n;n}
+#MACRO {\eOy} {#echo <ffa>ne;ne}
 

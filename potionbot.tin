@@ -5,6 +5,12 @@
 
 #ALIAS {brew_potion} 
 {
+    #IF {!$CURRENT_POTION && BREW_LIST[] == 0}
+    {
+        #ECHO Nothing to do, exiting;
+        #RETURN;
+    };
+
     #ECHO {brewing..};
     #IF {&CURRENT_POTION[] == 0 && &BREW_LIST[] > 0}
     {
@@ -18,9 +24,10 @@
         #VAR {CURRENT_POTION} {$BREW_LIST[1]};
         #LIST {BREW_LIST} {DELETE} {1};
     };
-    #ELSEIF {&CURRENT_POTION[] == 0 && &BREW_LIST[] == 0}
+    #ELSEIF {$CURRENT_POTION[num] == 0 && &BREW_LIST[] == 0}
     {
         #ECHO {No Potions in Queue};
+        #VAR {CURRENT_POTION} {};
         #RETURN;
     };
 

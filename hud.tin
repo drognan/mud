@@ -1,3 +1,4 @@
+#GAG {^Hp: {\d+}({\d+}) %* Gp: {\d+}({\d+}) Xp: {\d+}({\d+})%*}  
 #ACTION {^Hp: {\d+}({\d+}) %* Gp: {\d+}({\d+}) Xp: {\d+}({\d+})%*}  
 {
     #VAR {OLD_HP} {$CURRENT_HP};
@@ -24,17 +25,12 @@
     #VAR {GP_DIFF_COLOR} {@color_positive{$GP_DIFF}};
     #VAR {XP_DIFF_COLOR} {@color_positive{$XP_DIFF}};
 
-
-    #GAG {%0};
-
     #FORMAT {hud_str} {%-200s} {<078>Hp: $HP_COLOR$CURRENT_HP<078>(<168>$MAX_HP<078>) [$HP_DIFF_COLOR$HP_DIFF<078>] %3 Gp: $GP_COLOR$CURRENT_GP<078>(<168>$MAX_GP<078>) [$GP_DIFF_COLOR$GP_DIFF<078>] Xp: $XP_COLOR$CURRENT_XP<078>(<168>$MAX_XP<078>) [$XP_DIFF_COLOR$XP_DIFF<078>] %8};
     #IF {$GP_DIFF > 42 || $HP_DIFF != 0 || $XP_DIFF != 0}    
     {
-        #ECHO $hud_str 
+        #ECHO $hud_str;
     };
-   
     #LINE IGNORE #SHOW {$hud_str} {-4} {2};
-    
 }  
 
 
