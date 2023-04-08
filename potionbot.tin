@@ -139,11 +139,11 @@
 
 #ALIAS {ttt} 
 {
-    order_potion 14 int;
-    order_potion 14 con;
-    order_potion 14 str;
-    order_potion 14 dex;
-    order_potion 1 resistset;
+    order 14 int;
+    order 14 con;
+    order 14 str;
+    order 14 dex;
+    order 1 resistset;
 }
 
 
@@ -169,7 +169,7 @@
 }
 
 
-#ALIAS {order_potion %1 %2} 
+#ALIAS {order %1 %2} 
 {
     #ECHO {%1 - %2};
 
@@ -184,16 +184,16 @@
         #IF {"$ORDER_TYPE" == "wis"} {#LOCAL {ORDER_TYPE} {wisdom}};
         #IF {"$ORDER_TYPE" == "resistset"}
         {
-            order_potion %1 blunt;
-            order_potion %1 sharp;
-            order_potion %1 pierce;
-            order_potion %1 fire;
-            order_potion %1 cold;
-            order_potion %1 acid;
-            order_potion %1 magic;
-            order_potion %1 psionic;
-            order_potion %1 poison;
-            order_potion %1 electricity;
+            order %1 blunt;
+            order %1 sharp;
+            order %1 pierce;
+            order %1 fire;
+            order %1 cold;
+            order %1 acid;
+            order %1 magic;
+            order %1 psionic;
+            order %1 poison;
+            order %1 electricity;
         };
         
         #IF {"$ORDER_TYPE" != "resistset"} 
@@ -258,6 +258,5 @@
 {
     #IF {%1 > %2} {#RETURN %2};
     #RETURN %1;
-
 }
 
