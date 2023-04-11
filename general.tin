@@ -28,11 +28,10 @@
     #format {num_manas_str} {%-13s} {<088>Manas: <148>$NUM_MANAS};
     #show {$num_manas_str} {-3} {15}
 }
-#alias {draw_vapors} 
+#alias {draw_cyans} 
 {
-
-    #format {num_vapors_str} {%-12s} {<088>Vapors: <168>$NUM_VAPORS};
-    #show {$num_vapors_str} {-3} {28}
+    #format {num_cyans_str} {%-12s} {<088>Cyans: <168>$NUM_CYANS};
+    #show {$num_cyans_str} {-3} {28}
 }
 #alias {draw_detox} 
 {
@@ -44,6 +43,12 @@
     #format {num_restores_str} {%-12s} {<088>Restores: <138>$NUM_RESTORES};
     #show {$num_restores_str} {-3} {54}
 }
+#alias {draw_vapors} 
+{
+
+    #format {num_vapors_str} {%-12s} {<088>Vapors: <168>$NUM_VAPORS};
+    #show {$num_vapors_str} {-3} {67}
+}
 
 #alias {draw_potions}
 {
@@ -52,22 +57,24 @@
     draw_vapors;
     draw_detox;
     draw_restores;
+    draw_cyans;
 }
 
-#alias {cn} {count mana potions;count true cure waters;count vapor form potions;count detox potions;count restore potions}
+#alias {cn} {count mana potions;count cyan potions;count true cure waters;count vapor form potions;count detox potions;count restore potions}
 
 #action {^For a total of %1 true cure waters in your inventory.$} {#VAR NUM_TRUES %1;draw_trues}
 #action {^For a total of %1 mana potions in your inventory.$} {#VAR NUM_MANAS %1;draw_manas}
 #action {^For a total of %1 vapor form potions in your inventory.$} {#VAR NUM_VAPORS %1;draw_vapors}
 #action {^For a total of %1 detox potions in your inventory.$} {#VAR NUM_DETOX %1;draw_detox}
 #action {^For a total of %1 restore potions in your inventory.$} {#VAR NUM_RESTORES %1;draw_restores}
+#action {^For a total of %1 cyan potions in your inventory.$} {#VAR NUM_CYANS %1;draw_cyans}
 
 #action {^You uncork the bottle, at the same time literally smelling the power contained within.} {#math {NUM_MANAS} {$NUM_MANAS - 1};draw_potions}
 #action {^With a quick flick of the wrist, you knock back the sweet syrupy liquid.} {#math {NUM_TRUES} {$NUM_TRUES - 1};draw_potions}
 #action {^You drink a Vapor Form Potion and your body takes on the consistency of water vapor.} {#MATH NUM_VAPORS {$NUM_VAPORS - 1};draw_potions}
-#action {You gulp down the potion in a matter of seconds.  Your body vibrates slightly as you feel the effects of its magic.} {#MATH NUM_RESTORES {$NUM_RESTORES - 1};draw_restores}
-#action {You feel the intoxication leaving your body.} {#MATH NUM_DETOX {$NUM_DETOX - 1};draw_detox}
-
+#action {^You gulp down the potion in a matter of seconds.  Your body vibrates slightly as you feel the effects of its magic.} {#MATH NUM_RESTORES {$NUM_RESTORES - 1};draw_restores}
+#action {^You feel the intoxication leaving your body.} {#MATH NUM_DETOX {$NUM_DETOX - 1};draw_detox}
+#action {^You begin to feel mentally refreshed.} {#MATH NUM_CYANS {$NUM_CYANS - 1};draw_detox}
 
 
 /* ------------------------- TELL WINDOW  ------------------------------------------------- */

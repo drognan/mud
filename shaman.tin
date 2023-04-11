@@ -14,8 +14,20 @@
 #alias {detox} {get detox potion from bags;drink detox potion;put detox potions in bags}
 #alias {restore} {get restore potion from bags;drink restore potion;put restore potions in bags}
 
+/* ------------------------- ACTIONS ------------------------------------------------- */
+#action {^You feel your resistance to %1 leave you.} {#echo {<ffa>cast resist %1 me};cast resist %1 me}
+#action {^Your Place of Power dissolves into the earth.} {cast place of power}
+
+
+#action {^%* says loudly%*, "defs %1"} {#echo {<ffa>def %1};def %1}
+#action {^%* says loudly%*, "paint %1 %2 %3 %4"} {#echo {<ffa>paint %1 %2 %3 %4};cast war paint %1 %2 %3 %4}
+#action {^%* says loudly%*, "purify %1"} {#echo {<ffa>purify %1};cast purify %1}
+#action {^%* says loudly%*, "regen %1"} {#echo {<ffa>regen %1};cast regenerate %1}
+#action {^%* says loudly%*, "heal %1"} {#echo {<ffa>battle heal %1};cast battle heal %1}
+#action {^%* says loudly%*, "pop"} {#echo {<ffa>place of power};cast place of power}
 
 /* ------------------------- ALIASES ------------------------------------------------ */
+
 #alias {pop} {cast place of power}
 #alias {sa} {cast spirit aura}
 #alias {bs} {cast blood shield}
@@ -24,6 +36,8 @@
 #alias {reg} {cast regenerate}
 #alias {wp} {cast war paint}
 #alias {drink_resists} {#foreach {$resist_potions} {potion} {get $potion potion from bags;drink $potion potion}}
+#alias {ta} {cast touch of armagor}
+#alias {is %1 %2} {cast infuse spirit %1 %2}
 
 #alias {buff} {
     #echo {<ffa>Buffar};
@@ -42,14 +56,12 @@
 
 #alias {def} 
 {
-	#echo {<ffa>cast ice armour %1};cast ice armour %1;
-	#delay {3} {#echo {<ffa>cast blood shield %1};cast frost cloak %1};
-	#delay {6} {#echo {<ffa>cast water shield %1};cast water shield %1};
-	#delay {9} {#echo {<ffa>cast resist magic %1};cast resist magic %1};
-	#delay {12} {#echo {<ffa>cast resist cold %1};cast resist cold %1};
+	#echo {<ffa>cast regenerate %1};cast regenerate %1;
+	#delay {3} {#echo {<ffa>cast blood shield %1};cast blood shield %1};
+	#delay {6} {#echo {<ffa>cast spirit aura %1};cast spirit aura %1};
+	#delay {9} {#echo {<ffa>cast resist poison %1};cast resist poison %1};
+	#delay {12} {#echo {<ffa>cast resist death %1};cast resist death %1};
 }	
-
-
 
 #CLASS {ALCHIE} {CLOSE}
 

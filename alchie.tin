@@ -22,7 +22,6 @@
 #action {You feel your resistance to %1 leave you.} {#echo {<ffa>cast resist %1 me};cast resist %1 me}
 #action {The ice armour surrounding you melts away.} {#echo {<ffa>cast ice armour me};cast ice armour me}
 
-
 #action {^%* says loudly%*, "defs %1"} {#echo {<ffa>def %1};def %1}
 
 /* ------------------------- ALIASES ------------------------------------------------ */
