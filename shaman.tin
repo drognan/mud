@@ -17,7 +17,8 @@
 /* ------------------------- ACTIONS ------------------------------------------------- */
 #action {^You feel your resistance to %1 leave you.} {#echo {<ffa>cast resist %1 me};cast resist %1 me}
 #action {^Your Place of Power dissolves into the earth.} {cast place of power}
-
+#action {^Your mystical regenerative powers have dissipated.$} {cast regenerate me}
+#action {^The spirits surrounding you fade into nothing.$} {cast spirit aura me}
 
 #action {^%* says loudly%*, "defs %1"} {#echo {<ffa>def %1};def %1}
 #action {^%* says loudly%*, "paint %1 %2 %3 %4"} {#echo {<ffa>paint %1 %2 %3 %4};cast war paint %1 %2 %3 %4}

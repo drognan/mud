@@ -100,6 +100,11 @@
      showtowin %1 tells you: "%2
 }
 
+#ACTION {^You {tell|ask} %*, "%2}
+{
+     showtowin You %1 %2: "%3
+}
+
 #ACTION {~%1 says%*, "%2}
 {
      showtowin %1 says: "%2
