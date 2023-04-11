@@ -8,9 +8,13 @@
 #class POTION_BOT read potionbot.tin
 
 
-
-
 #CLASS {ALCHIE} {OPEN}
+
+#alias {heal} {get true cure potion from bp;drink true cure water}
+#alias {dm} {get mana potion from bp;drink mana potion}
+#alias {dc} {get cyan potion from bp;drink cyan potion}
+#alias {detox} {get detox potion from bp;drink detox potion}
+#alias {restore} {get restore potion from bp;drink restore potion}
 
 /* ------------------------- ACTIONS ------------------------------------------------- */
 #action {The frost cloak covering you melts away.} {#echo {<ffa>cast frost cloak me};cast frost cloak me}

@@ -1,0 +1,55 @@
+#read config.tin
+#read general.tin
+#read hud.tin
+#read keypad.tin
+#read map.tin
+#read org.tin
+#read highlight.tin
+
+#CLASS {ALCHIE} {OPEN}
+
+#alias {heal} {get true cure potion from bags;drink true cure water;put true cure waters in bags}
+#alias {dm} {get mana potion from bags;drink mana potion;put mana potions in bags}
+#alias {dc} {get cyan potion from bags;drink cyan potion;put cyan potions in bags}
+#alias {detox} {get detox potion from bags;drink detox potion;put detox potions in bags}
+#alias {restore} {get restore potion from bags;drink restore potion;put restore potions in bags}
+
+
+/* ------------------------- ALIASES ------------------------------------------------ */
+#alias {pop} {cast place of power}
+#alias {sa} {cast spirit aura}
+#alias {bs} {cast blood shield}
+#alias {rd} {cast resist death}
+#alias {rp} {cast resist poison}
+#alias {reg} {cast regenerate}
+#alias {wp} {cast war paint}
+#alias {drink_resists} {#foreach {$resist_potions} {potion} {get $potion potion from bags;drink $potion potion}}
+
+#alias {buff} {
+    #echo {<ffa>Buffar};
+    get 7 str potions from bags;
+    #7 drink str potion;
+    get 7 int potions from bags;
+    #7 drink int potion;
+    get 7 con potions from bags;
+    #7 drink con potion;
+    get 7 dex potions from bags;
+    #7 drink dex potion;
+
+
+
+}
+
+#alias {def} 
+{
+	#echo {<ffa>cast ice armour %1};cast ice armour %1;
+	#delay {3} {#echo {<ffa>cast blood shield %1};cast frost cloak %1};
+	#delay {6} {#echo {<ffa>cast water shield %1};cast water shield %1};
+	#delay {9} {#echo {<ffa>cast resist magic %1};cast resist magic %1};
+	#delay {12} {#echo {<ffa>cast resist cold %1};cast resist cold %1};
+}	
+
+
+
+#CLASS {ALCHIE} {CLOSE}
+
