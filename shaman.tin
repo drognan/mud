@@ -19,6 +19,7 @@
 #action {^Your Place of Power dissolves into the earth.} {cast place of power}
 #action {^Your mystical regenerative powers have dissipated.$} {cast regenerate me}
 #action {^The spirits surrounding you fade into nothing.$} {cast spirit aura me}
+#action {^Your body returns to its normal state.$} {#ECHO {War paint}}
 
 #action {^%* says loudly%*, "defs %1"} {#echo {<ffa>def %1};def %1}
 #action {^%* says loudly%*, "paint %1 %2 %3 %4"} {#echo {<ffa>paint %1 %2 %3 %4};cast war paint %1 %2 %3 %4}

@@ -18,3 +18,5 @@
 #MACRO {\eOx} {#echo <ffa>n;n}
 #MACRO {\eOy} {#echo <ffa>ne;ne}
 
+#MACRO {\eOp} {#echo <ffa>npk0;#send {npk0}}
+
