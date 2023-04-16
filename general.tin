@@ -100,7 +100,7 @@
      showtowin %1 tells you: "%2
 }
 
-#ACTION {^You {tell|ask} %*, "%2}
+#ACTION {^You {tell|ask} %2, "%3}
 {
      showtowin You %1 %2: "%3
 }
