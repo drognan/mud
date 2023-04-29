@@ -16,7 +16,7 @@
 
 /* ------------------------- ACTIONS ------------------------------------------------- */
 #action {^You feel your resistance to %1 leave you.} {#echo {<ffa>cast resist %1 me};cast resist %1 me}
-#action {^Your Place of Power dissolves into the earth.} {cast place of power}
+#action {Your Place of Power dissolves into the earth.} {cast place of power}
 #action {^Your mystical regenerative powers have dissipated.$} {cast regenerate me}
 #action {^The spirits surrounding you fade into nothing.$} {cast spirit aura me}
 #action {^Your body returns to its normal state.$} {#ECHO {War paint}}
@@ -27,6 +27,7 @@
 #action {^%* says loudly%*, "regen %1"} {#echo {<ffa>regen %1};cast regenerate %1}
 #action {^%* says loudly%*, "heal %1"} {#echo {<ffa>battle heal %1};cast battle heal %1}
 #action {^%* says loudly%*, "pop"} {#echo {<ffa>place of power};cast place of power}
+#action {^%* prays to you for reconciliation.} {cast summon corpse %1}
 
 /* ------------------------- ALIASES ------------------------------------------------ */
 

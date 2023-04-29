@@ -1,0 +1,6 @@
+#read general.tin
+#read hud.tin
+#read keypad.tin
+#read map.tin
+#read org.tin
+#read highlight.tin
