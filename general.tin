@@ -1,4 +1,4 @@
-#session rod mud.rod.org 3000
+#session rod 45.79.146.131 3000
 
 #ticker {tic} {save} {300}
 
