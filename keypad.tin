@@ -1,7 +1,11 @@
 #MACRO {\eOP} {f1}
+#MACRO {\e[P} {f1}
 #MACRO {\eOQ} {f2}
+#MACRO {\e[Q} {f2}
 #MACRO {\eOR} {f3}
+#MACRO {\e[R} {f3}
 #MACRO {\eOS} {f4}
+#MACRO {\e[S} {f4}
 
 
 #MACRO {\eOo} {#echo <ffa>in;in}
@@ -18,5 +22,5 @@
 #MACRO {\eOx} {#echo <ffa>n;n}
 #MACRO {\eOy} {#echo <ffa>ne;ne}
 
-#MACRO {\eOp} {#echo <ffa>npk0;#send {npk0}}
+#MACRO {\eOp} {#send {npk0}}
 
